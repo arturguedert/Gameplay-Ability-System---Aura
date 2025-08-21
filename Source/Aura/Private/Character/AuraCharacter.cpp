@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h"
 #include "Player/AuraPlayerState.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "UI/HUD/AuraHUD.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -57,5 +58,16 @@ void AAuraCharacter::InitAbilityInfo()
 	if (IsValid(AbilitySystemComponent))
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(AuraPS, this);
+	}
+
+	APlayerController* PlayerController = Cast<APlayerController>(GetController());
+	if (!IsValid(PlayerController))
+	{
+		return;
+	}
+	AAuraHUD* AuraHUD = Cast<AAuraHUD>(PlayerController->GetHUD());
+	if (IsValid(AuraHUD))
+	{
+		AuraHUD->InitOverlay(PlayerController, AuraPS, AbilitySystemComponent, AttributeSet);
 	}
 }
