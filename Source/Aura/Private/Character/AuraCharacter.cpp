@@ -59,6 +59,10 @@ void AAuraCharacter::InitAbilityInfo()
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(AuraPS, this);
 	}
+	if (UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent))
+	{
+		AuraASC->AbilityActorInfoSet();
+	}
 
 	APlayerController* PlayerController = Cast<APlayerController>(GetController());
 	if (!IsValid(PlayerController))

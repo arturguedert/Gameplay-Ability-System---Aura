@@ -23,12 +23,12 @@ public:
 	virtual void OnRep_PlayerState() override;
 
 protected:
+	virtual void InitAbilityInfo() override;
+
 	UPROPERTY(EditAnywhere, Category = "Components")
 	USpringArmComponent* SpringArm;
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UCameraComponent* Camera;
 
-private:
-	void InitAbilityInfo();
 };

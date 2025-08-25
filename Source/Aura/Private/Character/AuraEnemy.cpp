@@ -24,10 +24,7 @@ void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (IsValid(AbilitySystemComponent))
-	{
-		AbilitySystemComponent->InitAbilityActorInfo(this, this);
-	}
+	InitAbilityInfo();
 }
 
 void AAuraEnemy::HighlightActor()
@@ -60,4 +57,17 @@ void AAuraEnemy::UnHighlightActor()
 	}
 
 	bHighlighted = false;
+}
+
+void AAuraEnemy::InitAbilityInfo()
+{
+	if (IsValid(AbilitySystemComponent))
+	{
+		AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	}
+
+	if (UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent))
+	{
+		AuraASC->AbilityActorInfoSet();
+	}
 }

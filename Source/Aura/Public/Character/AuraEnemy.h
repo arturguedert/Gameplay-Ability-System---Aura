@@ -27,4 +27,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Highlight")
 	bool bHighlighted = false;
+
+protected:
+	virtual void InitAbilityInfo() override;
 };
