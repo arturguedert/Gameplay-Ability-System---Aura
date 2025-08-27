@@ -74,4 +74,9 @@ void AAuraCharacter::InitAbilityInfo()
 	{
 		AuraHUD->InitOverlay(PlayerController, AuraPS, AbilitySystemComponent, AttributeSet);
 	}
+
+	if (HasAuthority())
+	{
+		InitializeDefaultAttributes();
+	}
 }
