@@ -46,6 +46,17 @@ void AAuraCharacter::OnRep_PlayerState()
 	InitAbilityInfo();
 }
 
+int32 AAuraCharacter::GetPlayerLevel()
+{
+	AAuraPlayerState* AuraPS = GetPlayerState<AAuraPlayerState>();
+	if (!IsValid(AuraPS))
+	{
+		return 0;
+	}
+
+	return AuraPS->GetPlayerLevel();
+}
+
 void AAuraCharacter::InitAbilityInfo()
 {
 	AAuraPlayerState* AuraPS = GetPlayerState<AAuraPlayerState>();

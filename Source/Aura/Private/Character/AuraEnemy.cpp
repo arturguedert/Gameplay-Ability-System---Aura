@@ -59,6 +59,11 @@ void AAuraEnemy::UnHighlightActor()
 	bHighlighted = false;
 }
 
+int32 AAuraEnemy::GetPlayerLevel()
+{
+	return Level;
+}
+
 void AAuraEnemy::InitAbilityInfo()
 {
 	if (IsValid(AbilitySystemComponent))
