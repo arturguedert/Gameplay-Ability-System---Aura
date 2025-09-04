@@ -36,8 +36,13 @@ protected:
 
 	void AddCharacterAbilities();
 
+	virtual FVector GetCombatSocketLocation() override;
+
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	FName WeaponTipSocketName;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponSocketName = "WeaponHandSocket";

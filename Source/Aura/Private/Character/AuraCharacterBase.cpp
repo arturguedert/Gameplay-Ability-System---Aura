@@ -58,3 +58,9 @@ void AAuraCharacterBase::AddCharacterAbilities()
 
 
 }
+
+FVector AAuraCharacterBase::GetCombatSocketLocation()
+{
+	checkf(Weapon, TEXT("Weapon not set on AuraCharacter"));
+	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
