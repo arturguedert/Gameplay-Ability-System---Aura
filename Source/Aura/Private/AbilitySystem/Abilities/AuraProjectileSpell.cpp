@@ -11,7 +11,7 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 
 }
 
-void UAuraProjectileSpell::SpawnProjectile()
+void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocation)
 {
 	UWorld* World = GetWorld();
 	AActor* AvatarActor = GetAvatarActorFromActorInfo();
@@ -29,11 +29,15 @@ void UAuraProjectileSpell::SpawnProjectile()
 	}
 
 	const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
+	FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation();
+	Rotation.Pitch = 0.f;
+
+	FTransform SpawnTransform = FTransform();
 	SpawnTransform.SetLocation(SocketLocation);
-	//TODO: Set the Projectile Rotation.
+	SpawnTransform.SetRotation(Rotation.Quaternion());
 
 	AActor* OwningActor = GetOwningActorFromActorInfo();
-	Projectile = World->SpawnActorDeferred<AAuraProjectile>(ProjectileClass, SpawnTransform, OwningActor, Cast<APawn>(OwningActor), ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
+	AAuraProjectile* Projectile = World->SpawnActorDeferred<AAuraProjectile>(ProjectileClass, SpawnTransform, OwningActor, Cast<APawn>(OwningActor), ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
 
 	//TODO: Give the projectile a GameplayEffect Spect for causing damage.
 
